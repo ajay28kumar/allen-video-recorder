@@ -40,7 +40,7 @@ export const ActionGroup= (props) => {
       <IconButton disabled={isRecording==='init'}>
         <Stop color ={isRecording !== 'init' ? 'primary': 'disabled'} onClick={() => {
           onVideoStop();
-          setIsRecording('init')
+          setIsRecording('init');
         }}/>
       </IconButton>
     </div>
