@@ -65,11 +65,11 @@ export const VideoRender = () => {
     mediaRecorder.pause();
   }
   return (
-    <Card>
-      <CardContent>
+    <Card style={{height: '100vh'}}>
+      <CardContent style={{height: '80vh'}}>
         <video
-          height='90%'
-          width="90%"
+          height='100%'
+          width="100%"
           autoPlay
           id="video"
         />
