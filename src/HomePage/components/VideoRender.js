@@ -49,7 +49,7 @@ export const VideoRender = () => {
         timerElem.innerHTML = `${Math.floor(totalTime)} s`;
       }
     }
-    mediaRecorder.start(e => console.log(e));
+    mediaRecorder.start();
   }
   const onVideoStop = () => {
     mediaRecorder.stop();
@@ -61,8 +61,11 @@ export const VideoRender = () => {
     tempLink.click();
   }
   const onVideoPause = () => {
-    document.getElementById('timer').innerText = '';
-    mediaRecorder.pause();
+    if (mediaRecorder.state === "recording") {
+      mediaRecorder.pause();
+    } else if(mediaRecorder.state === "paused") {
+      mediaRecorder.resume();
+    }
   }
   return (
     <Card style={{height: '100vh'}}>

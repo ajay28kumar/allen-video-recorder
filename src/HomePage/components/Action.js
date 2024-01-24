@@ -14,6 +14,8 @@ export const ActionGroup= (props) => {
   const [isRecording, setIsRecording] = React.useState('init');
   const { onVideoRecording, onVideoStop, onVideoPause } = props || {}
   
+  console.log(navigator.mediaSession);
+  
   return (
     <div style={{
       display: "flex"
