@@ -38,7 +38,12 @@ export const VideoRender = () => {
           timeStarted = e.timecode;
         }
         totalTime = e.timecode - timeStarted;
-        console.log("totalTime : ", totalTime);
+        // console.log("totalTime : ", e.data.size, performance.memory);
+        const {jsHeapSizeLimit , usedJSHeapSize} = performance.memory || {}
+        if(jsHeapSizeLimit  < usedJSHeapSize) {
+          onVideoPause();
+          alert('memoryIssue');
+        }
         recordedBlobs.push(e.data)
       }
     }
@@ -72,6 +77,7 @@ export const VideoRender = () => {
           onVideoStop = {onVideoStop}
           onVideoPause={onVideoPause}
           recordedBlobs={recordedBlobs}
+          mediaRecorder={mediaRecorder?.status}
         />
         
       </CardActions>
