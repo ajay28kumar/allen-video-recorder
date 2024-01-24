@@ -12,9 +12,8 @@ import { IconButton} from "@material-ui/core";
 
 export const ActionGroup= (props) => {
   const [isRecording, setIsRecording] = React.useState('init');
-  const { onVideoRecording, onVideoStop, onVideoPause, mediaRecorder } = props || {}
+  const { onVideoRecording, onVideoStop, onVideoPause } = props || {}
   
-  console.log("isRecording :", window.localStream.getVideoTracks());
   return (
     <div style={{
       display: "flex"

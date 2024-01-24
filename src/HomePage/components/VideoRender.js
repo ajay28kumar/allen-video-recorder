@@ -37,14 +37,16 @@ export const VideoRender = () => {
         if(!timeStarted) {
           timeStarted = e.timecode;
         }
-        totalTime = e.timecode - timeStarted;
-        // console.log("totalTime : ", e.data.size, performance.memory);
+        totalTime = (e.timecode - timeStarted)/1000;
+        // console.log("totalTime : ", e);
         const {jsHeapSizeLimit , usedJSHeapSize} = performance.memory || {}
         if(jsHeapSizeLimit  < usedJSHeapSize) {
           onVideoPause();
           alert('memoryIssue');
         }
         recordedBlobs.push(e.data)
+        const timerElem = document.getElementById('timer');
+        timerElem.innerHTML = `${Math.floor(totalTime)} s`;
       }
     }
     mediaRecorder.start(e => console.log(e));
@@ -59,6 +61,7 @@ export const VideoRender = () => {
     tempLink.click();
   }
   const onVideoPause = () => {
+    document.getElementById('timer').innerText = '';
     mediaRecorder.pause();
   }
   return (
@@ -70,6 +73,7 @@ export const VideoRender = () => {
           autoPlay
           id="video"
         />
+        <div id="timer" style={{fontSize: "20px", fontWeight: "bold"}}/>
       </CardContent>
       <CardActions style={{justifyContent: "center"}}>
         <ActionGroup
